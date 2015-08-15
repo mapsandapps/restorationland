@@ -1,0 +1,1 @@
+(function(){stButtons.processCB({"clicks_total":1,"facebook":1,"total":1,"shares":[],"url":"http:\/\/www.myajc.com\/news\/news\/keeper-dolls-head-trail\/ng282\/?icmp=ajc_internallink_invitationbox_apr2013_ajcstub1","ourl":"http:\/\/www.myajc.com\/news\/news\/keeper-dolls-head-trail\/ng282\/?icmp=ajc_internallink_invitationbox_apr2013_ajcstub1#526a7a41.3869168.735538"})})();

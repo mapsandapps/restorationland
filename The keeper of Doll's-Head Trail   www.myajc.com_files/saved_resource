@@ -1,0 +1,8 @@
+flipper = new Object();
+flipper.active_flags = {"active_flags": ["JANUS-127", "CMSTC-969", "CMSAP-1119-visible", "CMSSAI-858", "twitter_card", "mobile_image_slider", "JANUS-1572", "JANUS-141", "JANUS-1627", "CMSTC-1011", "new_event_urls", "JANUS-1244", "JANUS-64", "JANUS-1266", "JANUS-1264", "CMSSAI-1343", "Chartbeat_Enable", "HYBRID_LISTS", "JANUS-1520", "CMSAM-408", "CMSAM-429", "JANUS-1686"]}.active_flags;
+flipper.is_active = function(key) {
+    for (var i = 0; i < flipper.active_flags.length; i++) {
+        if ( flipper.active_flags[i] == key ) return true;
+    }
+    return false;
+}

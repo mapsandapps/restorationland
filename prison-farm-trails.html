@@ -1,0 +1,71 @@
+
+<!DOCTYPE html>
+<meta charset="utf-8">
+<html>
+<head profile="http://www.w3.org/2005/10/profile">
+  <title>Prison Farm Trails</title>
+  <link rel="icon" 
+    type="image/png" 
+    href="http://proximityviz.com/favicon.png">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.css" />
+  <!--[if lte IE 8]>
+      <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.ie.css" />
+  <![endif]-->
+  <script src="http://cdn.leafletjs.com/leaflet-0.6.4/leaflet.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script type="text/javascript" src="data/prison-farm-trails.js"></script>
+  <style type="text/css">
+  #map {
+    height: 500px;
+  }
+  </style>
+</head>
+<body>
+
+<div id="map"></div>
+
+<script type="text/javascript">
+
+  var map = L.map('map').setView([33.692494842050877, -84.32447318184068], 14);
+
+  var youAreHere;
+  var youAreHereCircle;
+  var yourLocation;
+
+  map.locate({setView: false, watch: true, enableHighAccuracy: true})
+    .on('locationfound', function(e){
+
+      if (typeof(yourLocation) != "undefined") {
+        console.log(yourLocation);
+        map.removeLayer(youAreHere);
+        map.removeLayer(youAreHereCircle);
+      };
+
+      yourLocation = e;
+
+      var radius = e.accuracy / 2;
+
+      youAreHere = L.marker(e.latlng);
+      youAreHere.addTo(map);
+
+      youAreHereCircle = L.circle(e.latlng, radius);
+      youAreHereCircle.addTo(map);
+    })
+    .on('locationerror', function(e){
+        console.log(e);
+        alert("Location access denied.");
+    });
+
+  var hikeLayer = L.geoJson(trails, {
+    style: {color: '#3498db',
+      opacity: 1},
+  }).addTo(map);
+
+  L.tileLayer('http://otile4.mqcdn.com/tiles/1.0.0/osm/{z}/{x}/{y}.png', {
+    attribution: '<a href="http://proximityviz.com/">Proximity Viz</a> | Tiles &copy; <a href="http://www.mapquest.com/" target="_blank">MapQuest</a> <img src="http://developer.mapquest.com/content/osm/mq_logo.png" />',
+    maxZoom: 18
+  }).addTo(map);
+</script>
+
+</body>
+</html>
